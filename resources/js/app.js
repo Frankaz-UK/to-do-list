@@ -1,2 +1,3 @@
 import './bootstrap';
-import '../css/app.css';
+import '../css/app.scss';
+import * as bootstrap from 'bootstrap';
