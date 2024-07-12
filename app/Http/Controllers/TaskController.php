@@ -44,7 +44,7 @@ class TaskController extends Controller
     public function update(Request $request, Task $task): RedirectResponse
     {
         $status = $task->getCompleteStatus();
-        $status === true ? $task->unSetComplete() : $task->setComplete();
+        $status ? $task->unSetComplete() : $task->setComplete();
         return redirect()->route('tasks.index');
     }
 

@@ -23,7 +23,16 @@
                                 {{ $task->name }}
                             </td>
                             <td>
-                                complete
+                                <form
+                                    method="post"
+                                    name="update-task-{{ $task->id }}"
+                                    id="update-task-{{ $task->id }}"
+                                    action="{{route('tasks.update', $task)}}"
+                                >
+                                    @csrf
+                                    @method('PATCH')
+                                    <button type="submit">@php echo $task->complete ? 'Uncomplete' : 'Complete'; @endphp </button>
+                                </form>
                                 <form
                                     method="post"
                                     name="delete-task-{{ $task->id }}"

@@ -17,19 +17,6 @@ class Task extends Model
     protected $fillable = ['name', 'complete'];
 
     /**
-     * @var bool
-     */
-    private bool $complete;
-    /**
-     * @var int
-     */
-    private int $id;
-    /**
-     * @var string
-     */
-    private string $name;
-
-    /**
      * @return bool
      */
     public function getCompleteStatus(): bool
@@ -43,6 +30,7 @@ class Task extends Model
     public function setComplete(): void
     {
         $this->complete = true;
+        $this->save();
     }
 
     /**
@@ -51,5 +39,6 @@ class Task extends Model
     public function unSetComplete(): void
     {
         $this->complete = false;
+        $this->save();
     }
 }
