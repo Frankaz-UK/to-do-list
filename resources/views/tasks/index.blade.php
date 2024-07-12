@@ -1,10 +1,10 @@
 <x-layout>
     <main>
-        <div class="grid grid-cols-2 gap-4">
-            <div>
+        <div class="row">
+            <div class="col-6">
                 form here
             </div>
-            <div>
+            <div class="col-6">
                 <table class="border-2">
                     <thead>
                     <tr>
