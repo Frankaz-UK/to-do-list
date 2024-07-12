@@ -20,4 +20,19 @@ You must demonstrate the following abilities/skills: make models, controllers, m
      
 
 **Good Luck !!! Once done, please send us the link of your repo.**
+
+**Setup instructions**
    
+run `composer update`
+
+run `npm install && npm run build`
+
+**The following steps require a working docker install!**
+
+run `php artisan breeze:install` (I used the mysql build)
+
+run `./vendor/bin/sail up`
+
+run `./vendor/bin/sail artisan migrate:fresh --seed` (adds some entries to the database for tasks, some complete some not)
+
+Navigate to http://localhost
