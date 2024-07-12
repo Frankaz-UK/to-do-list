@@ -24,14 +24,17 @@ class TaskController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storage. (note: Task $task creates a new instance of Task model)
      *
      * @param Request $request
-     * @return Response
+     * @param Task $task
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request, Task $task): RedirectResponse
     {
-        //
+        $task->name = $request->input('name');
+        $task->save();
+        return redirect()->route('tasks.index');
     }
 
     /**
