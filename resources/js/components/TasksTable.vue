@@ -76,7 +76,6 @@ export default {
             });
             axios.get(indexRoute)
                 .then(({data}) => {
-                    console.log(data);
                     this.items = data.results.data;
                     this.current_page = data.results.current_page;
                     this.last_page = data.results.last_page;
@@ -84,8 +83,6 @@ export default {
                 });
         },
         fetchRoute(routename, param) {
-            console.log(routename);
-            console.log(param);
             return route(routename, param);
         }
     },
