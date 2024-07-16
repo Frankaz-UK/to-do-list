@@ -18,8 +18,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 const app = createApp({});
 app.use(BootstrapVue)
 
-import {BTable} from "bootstrap-vue-next";
+import {BTable, BPagination} from "bootstrap-vue-next";
 app.component('b-table', BTable);
+app.component('b-pagination', BPagination);
 import ExampleComponent from './components/ExampleComponent.vue';
 app.component('example-component', ExampleComponent);
 import TasksTable from './components/TasksTable.vue';

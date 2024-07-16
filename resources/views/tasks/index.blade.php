@@ -15,7 +15,6 @@
                 </form>
             </div>
             <div class="col-8">
-                <example-component></example-component>
                 <tasks-table></tasks-table>
                 <table class="table">
                     <thead>
