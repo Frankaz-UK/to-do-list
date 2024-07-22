@@ -11,7 +11,10 @@
             </template>
             <template #cell(complete)="data">
                 <div class="row">
-                    <div v-if="!data.item.complete" class="col-6">
+                    <div style="visibility: hidden">
+                        complete action
+                    </div>
+                    <div class="col-5 me-2">
                         <form
                             method="post"
                             name="update-task-{{ data.item.id }}"
@@ -21,14 +24,15 @@
                         >
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="patch">
-                            <button type="submit" class="btn btn-success">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check" viewBox="0 0 16 16">
-                                    <path d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425z"/>
-                                </svg>
+                            <button v-if="!data.item.complete" type="submit" class="btn btn-success">
+                                <FontAwesomeIcon icon="fa-solid fa-check" />
+                            </button>
+                            <button v-else type="submit" class="btn btn-outline-info">
+                                <FontAwesomeIcon icon="fa-sold fa-undo" />
                             </button>
                         </form>
                     </div>
-                    <div v-if="!data.item.complete" class="col-6">
+                    <div v-if="!data.item.complete" class="col-5 me2">
                         <form
                             method="post"
                             name="delete-task-{{ data.item.id }}"
@@ -38,7 +42,9 @@
                         >
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="delete">
-                            <button type="submit" class="btn btn-danger">&times;</button>
+                            <button type="submit" class="btn btn-danger">
+                                <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -49,8 +55,11 @@
 </template>
 
 <script>
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+
 export default {
     name: 'Tasks Table',
+    components: {FontAwesomeIcon},
     data() {
         return {
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -59,7 +68,20 @@ export default {
             per_page: 15,
             total_rows: 0,
             term: null,
-            fields: ['id', 'name', 'complete'],
+            fields: [
+                {
+                    key: "id",
+                    label: "#"
+                },
+                {
+                    key: "name",
+                    label: "Name"
+                },
+                {
+                    key: "complete",
+                    label: "Actions"
+                }
+            ],
             items: [],
         }
     },

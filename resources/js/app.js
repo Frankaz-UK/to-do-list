@@ -9,13 +9,18 @@ import { createApp } from 'vue';
 import * as BootstrapVue from "bootstrap-vue-next";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import {library} from "@fortawesome/fontawesome-svg-core";
+import {fas} from "@fortawesome/free-solid-svg-icons";
+
+library.add(fas)
 /**
  * Next, we will create a fresh Vue application instance. You may then begin
  * registering components with the application instance so they are ready
  * to use in your application's views. An example is included for you.
  */
 
-const app = createApp({});
+const app = createApp({}).component('font-awesome-icon', FontAwesomeIcon);
 app.use(BootstrapVue)
 
 import {BTable, BPagination} from "bootstrap-vue-next";
