@@ -1,5 +1,8 @@
 <template>
     <div>
+        <div class="p-3">
+            <input v-model="term" placeholder="Search..." class="form-control" />
+        </div>
         <b-table striped hover :items="items" :fields="fields">
             <template #cell(name)="data">
                 <div v-if="data.item.complete">
@@ -50,7 +53,20 @@
                 </div>
             </template>
         </b-table>
-        <b-pagination :per-page="per_page" v-model="current_page" :total-rows="total_rows"></b-pagination>
+        <div class="row">
+            <div class="col-9">
+                <b-pagination :per-page="per_page" v-model="current_page" :total-rows="total_rows"></b-pagination>
+            </div>
+            <div class="col-3">
+                <select name="per_page" id="per_page" v-model="per_page" class="form-select">
+                    <option value="15">15</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -94,14 +110,17 @@ export default {
                 _query: {
                     page: this.current_page,
                     term: this.term,
+                    perpage: this.per_page,
                 },
             });
             axios.get(indexRoute)
                 .then(({data}) => {
+                    console.log(data);
                     this.items = data.results.data;
                     this.current_page = data.results.current_page;
                     this.last_page = data.results.last_page;
                     this.total_rows = data.results.total;
+                    this.per_page = data.results.per_page;
                 });
         },
         fetchRoute(routename, param) {
@@ -110,6 +129,16 @@ export default {
     },
     watch: {
         current_page: {
+            handler: function(value) {
+                this.fetchData();
+            }
+        },
+        per_page: {
+            handler: function(value) {
+                this.fetchData();
+            }
+        },
+        term: {
             handler: function(value) {
                 this.fetchData();
             }

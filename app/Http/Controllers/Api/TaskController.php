@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Task;
-use Illuminate\Database\Query\Builder;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -18,22 +18,25 @@ class TaskController extends Controller
     public function index(Request $request): array
     {
         $request->validate([
-            'term' => [
-                'string',
-                'max:255',
+            'perpage' => [
+                'int',
+                'max:100',
+                'min:15',
             ],
         ]);
+
+        $perpage = $request->query('perpage', 15);
 
         $tasks = Task::query()
             ->when(
                 ! empty($request->filled('term')),
                 function (Builder $query) use ($request): void {
                     $query
-                        ->where('name', 'ilike', "%{$request->input('term')}%");
+                        ->where('name', 'like', '%' . $request->input('term') . '%');
                 },
             )
             ->orderBy('id')
-            ->paginate(15);
+            ->paginate($perpage);
 
         return [
             'results' => $tasks,
