@@ -1,7 +1,9 @@
 <template>
     <div>
-        <div class="p-3">
-            <input v-model="term" placeholder="Search..." class="form-control" />
+        <div class="row">
+            <div class="col-12 mb-3">
+                <input v-model="term" placeholder="Search..." class="form-control" />
+            </div>
         </div>
         <b-table striped hover :items="items" :fields="fields">
             <template #cell(name)="data">
@@ -115,7 +117,6 @@ export default {
             });
             axios.get(indexRoute)
                 .then(({data}) => {
-                    console.log(data);
                     this.items = data.results.data;
                     this.current_page = data.results.current_page;
                     this.last_page = data.results.last_page;
