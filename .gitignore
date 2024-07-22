@@ -18,3 +18,4 @@ composer.lock
 /docker-compose.yml
 /public/build/manifest.json
 /.idea
+/.idea/php.xml
