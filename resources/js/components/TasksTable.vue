@@ -25,10 +25,10 @@
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="patch">
                             <button v-if="!data.item.complete" type="submit" class="btn btn-success">
-                                <FontAwesomeIcon icon="fa-solid fa-check" />
+                                <FontAwesomeIcon title="Complete" icon="fa-solid fa-check" />
                             </button>
                             <button v-else type="submit" class="btn btn-outline-info">
-                                <FontAwesomeIcon icon="fa-sold fa-undo" />
+                                <FontAwesomeIcon title="Un-complete" icon="fa-sold fa-undo" />
                             </button>
                         </form>
                     </div>
@@ -43,7 +43,7 @@
                             <input type="hidden" name="_token" :value="csrf">
                             <input type="hidden" name="_method" value="delete">
                             <button type="submit" class="btn btn-danger">
-                                <FontAwesomeIcon icon="fa-solid fa-xmark" />
+                                <FontAwesomeIcon title="Delete" icon="fa-solid fa-xmark" />
                             </button>
                         </form>
                     </div>
@@ -70,16 +70,16 @@ export default {
             term: null,
             fields: [
                 {
-                    key: "id",
-                    label: "#"
+                    key: 'id',
+                    label: '#',
                 },
                 {
-                    key: "name",
-                    label: "Name"
+                    key: 'name',
+                    label: 'Name',
                 },
                 {
-                    key: "complete",
-                    label: "Actions"
+                    key: 'complete',
+                    label: 'Actions',
                 }
             ],
             items: [],
