@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-12 mb-3">
-                <input v-model="term" placeholder="Search..." class="form-control" />
+                <input @input="fetchData()" v-model="term" placeholder="Search..." class="form-control" />
             </div>
         </div>
         <b-table striped hover :items="items" :fields="fields">
@@ -126,13 +126,6 @@ export default {
         },
         fetchRoute(routename, param) {
             return route(routename, param);
-        }
-    },
-    watch: {
-        term: {
-            handler: function(value) {
-                this.fetchData();
-            }
         }
     },
 }
