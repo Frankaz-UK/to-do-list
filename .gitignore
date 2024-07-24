@@ -19,3 +19,4 @@ composer.lock
 /public/build/manifest.json
 /.idea
 /.idea/php.xml
+/public/mix-manifest.json
