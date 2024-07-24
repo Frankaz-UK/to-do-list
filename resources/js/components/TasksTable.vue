@@ -2,7 +2,7 @@
     <div>
         <div class="row">
             <div class="col-12 mb-3">
-                <input @input="fetchData()" v-model="term" placeholder="Search..." class="form-control" />
+                <input @input="fetchData(1)" v-model="term" placeholder="Search..." class="form-control" />
             </div>
         </div>
         <b-table striped hover :items="items" :fields="fields">
@@ -60,7 +60,7 @@
                 <b-pagination @click="fetchData()" :per-page="per_page" v-model="current_page" :total-rows="total_rows"></b-pagination>
             </div>
             <div class="col-3">
-                <select @change="fetchData()" name="per_page" id="per_page" v-model="per_page" class="form-select">
+                <select @change="fetchData(1)" name="per_page" id="per_page" v-model="per_page" class="form-select">
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="40">40</option>
@@ -107,7 +107,11 @@ export default {
         this.fetchData();
     },
     methods: {
-        fetchData() {
+        fetchData(page) {
+            if (page) {
+                this.current_page = page;
+            }
+            
             let indexRoute = route('tasks.api.index', {
                 _query: {
                     page: this.current_page,
