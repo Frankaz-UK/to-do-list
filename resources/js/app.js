@@ -6,7 +6,6 @@
 
 import './bootstrap';
 import { createApp } from 'vue';
-import * as BootstrapVue from "bootstrap-vue-next";
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
@@ -21,7 +20,6 @@ library.add(fas)
  */
 
 const app = createApp({}).component('font-awesome-icon', FontAwesomeIcon);
-app.use(BootstrapVue)
 
 import {BTable, BPagination} from "bootstrap-vue-next";
 app.component('b-table', BTable);
