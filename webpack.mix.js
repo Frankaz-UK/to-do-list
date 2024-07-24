@@ -13,4 +13,6 @@ mix.webpackConfig(webpack => {
 });
 
 mix.js('resources/js/app.js', 'public/build/assets').vue()
-    .sass('resources/scss/app.scss', 'public/build/assets');
+    .sass('resources/scss/app.scss', 'public/build/assets')
+    .sourceMaps(false, 'source-map')
+    .version();
