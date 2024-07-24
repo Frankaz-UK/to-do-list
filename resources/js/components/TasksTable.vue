@@ -57,10 +57,10 @@
         </b-table>
         <div class="row">
             <div class="col-9">
-                <b-pagination :per-page="per_page" v-model="current_page" :total-rows="total_rows"></b-pagination>
+                <b-pagination @click="fetchData()" :per-page="per_page" v-model="current_page" :total-rows="total_rows"></b-pagination>
             </div>
             <div class="col-3">
-                <select name="per_page" id="per_page" v-model="per_page" class="form-select">
+                <select @change="fetchData()" name="per_page" id="per_page" v-model="per_page" class="form-select">
                     <option value="15">15</option>
                     <option value="30">30</option>
                     <option value="40">40</option>
@@ -129,16 +129,6 @@ export default {
         }
     },
     watch: {
-        current_page: {
-            handler: function(value) {
-                this.fetchData();
-            }
-        },
-        per_page: {
-            handler: function(value) {
-                this.fetchData();
-            }
-        },
         term: {
             handler: function(value) {
                 this.fetchData();
