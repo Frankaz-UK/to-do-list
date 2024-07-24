@@ -32,6 +32,14 @@ class TaskController extends Controller
      */
     public function store(Request $request, Task $task): RedirectResponse
     {
+        $request->validate([
+            'name' => [
+                'string',
+                'max:255',
+                'min:15',
+            ],
+        ]);
+
         $task->name = $request->input('name');
         $task->save();
         return redirect()->route('tasks.index');
@@ -40,11 +48,10 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
      * @param Task $task
      * @return RedirectResponse
      */
-    public function update(Request $request, Task $task): RedirectResponse
+    public function update(Task $task): RedirectResponse
     {
         $status = $task->getCompleteStatus();
         $status ? $task->unSetComplete() : $task->setComplete();
@@ -54,11 +61,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @param Task $task
      * @return RedirectResponse
      */
-    public function destroy(Request $request, Task $task): RedirectResponse
+    public function destroy(Task $task): RedirectResponse
     {
         $task->delete();
         return redirect()->route('tasks.index');
